@@ -84,7 +84,7 @@ class RepositorySchema extends Schema
         // TODO increase the size of 'path' and 'parent' but this causes issues on MySQL due to key length
         $nodes = $this->createTable('phpcr_nodes');
         $nodes->addColumn('id', 'integer', array('autoincrement' => true));
-        $nodes->addColumn('path', 'string');
+        $nodes->addColumn('path', 'string', array('collation' => 'utf8_bin'));
         $nodes->addColumn('parent', 'string');
         $nodes->addColumn('local_name', 'string');
         $nodes->addColumn('namespace', 'string');

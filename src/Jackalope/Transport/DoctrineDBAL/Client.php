@@ -1470,11 +1470,7 @@ class Client extends BaseTransport implements QueryTransport, WritingInterface, 
         if (UUIDHelper::isUUID($identifier)) {
             $query = 'SELECT id FROM phpcr_nodes WHERE identifier = ? AND workspace_name = ?';
         } else {
-            if ($this->getConnection()->getDriver() instanceof \Doctrine\DBAL\Driver\PDOMySql\Driver) {
-                $query = 'SELECT id FROM phpcr_nodes WHERE path COLLATE utf8_bin = ? AND workspace_name = ?';
-            } else {
-                $query = 'SELECT id FROM phpcr_nodes WHERE path = ? AND workspace_name = ?';
-            }
+            $query = 'SELECT id FROM phpcr_nodes WHERE path COLLATE utf8_bin = ? AND workspace_name = ?';
         }
 
         $nodeId = $this->getConnection()->fetchColumn($query, array($identifier, $workspaceName));
